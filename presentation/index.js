@@ -14,6 +14,8 @@ import {
   Text
 } from "spectacle";
 
+const ForceGraph = require('./graph')
+
 // Import theme
 import createTheme from "spectacle/lib/themes/default";
 
@@ -105,6 +107,23 @@ export default class Presentation extends React.Component {
             <ListItem>light clients are leechers</ListItem>
           </List>
         </Slide>
+
+        <Slide transition={["zoom"]} bgColor="primary">
+          <Heading size={1} fit lineHeight={1} textColor="secondary">
+            Light vs Full
+          </Heading>
+          <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
+            diagram here
+          </Text>
+        </Slide>
+
+        <Slide transition={["zoom"]} bgColor="white">
+          <Heading size={1} fit lineHeight={1} textColor="secondary">
+            pretty pretty
+          </Heading>
+          <ForceGraph></ForceGraph>
+        </Slide>
+
 
       </Deck>
     );
