@@ -16,14 +16,23 @@ class MultiGossipGraph extends React.Component {
     this.newGraph()
   }
 
+  resetColors () {
+    const graph = this.graphStore.getState()
+    graph.nodes.forEach(node => {
+      node.color = 'green'
+    })
+    this.graphStore.putState(graph)
+  }
+
   async doGossip () {
+    this.resetColors()
     const graph = this.graphStore.getState()
     const node1 = this.graph1.nodes[0]
     const node2 = this.graph2.nodes[0]
     const node3 = this.graph3.nodes[0]
 
-    this.gossipFromNode({ graph, node: node1, color: 'red' })
-    this.gossipFromNode({ graph, node: node2, color: 'blue' })
+    this.gossipFromNode({ graph, node: node1, color: 'orange' })
+    this.gossipFromNode({ graph, node: node2, color: 'pink' })
     this.gossipFromNode({ graph, node: node3, color: 'purple' })
   }
 
@@ -72,7 +81,6 @@ class MultiGossipGraph extends React.Component {
     return (
       <div>
         <button onClick={() => this.doGossip()}>gossip</button>
-        <button onClick={() => this.newGraph()}>restart</button>
         <ForceGraph graphStore={this.graphStore}/>
       </div>
     )
@@ -80,7 +88,3 @@ class MultiGossipGraph extends React.Component {
 }
 
 module.exports = MultiGossipGraph
-
-function randomColor () {
-  return '#'+Math.floor(Math.random()*16777216).toString(16)
-}

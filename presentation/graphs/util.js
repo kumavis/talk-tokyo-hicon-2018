@@ -5,6 +5,8 @@ module.exports = {
   createRandomLinks,
   createRandomGraph,
   createConnectedGraph,
+  createLinkToNext,
+  createLinkToRandomNonNext,
 }
 
 let lastNodeId = 0
@@ -48,28 +50,28 @@ function createRandomLinks({ nodes }) {
 function createConnectedLinks({ nodes }) {
   const links = []
   nodes.forEach((node) => {
-    connectNext({ node })
-    connectRandomNonNext({ node })
+    links.push(createLinkToNext({ node, nodes }))
+    links.push(createLinkToRandomNonNext({ node, nodes }))
   })
   return links
+}
 
-  function connectNext({ node }) {
-    const source = node.id
-    const sourceIndex = nodes.indexOf(node)
-    const targetIndex = (sourceIndex + 1) % nodes.length
-    const target = nodes[targetIndex].id
-    links.push(createLink({ source, target }))
-  }
+function createLinkToNext({ node, nodes }) {
+  const source = node.id
+  const sourceIndex = nodes.indexOf(node)
+  const targetIndex = (sourceIndex + 1) % nodes.length
+  const target = nodes[targetIndex].id
+  return createLink({ source, target })
+}
 
-  function connectRandomNonNext({ node }) {
-    const source = node.id
-    const sourceIndex = nodes.indexOf(node)
-    const nonNextCount = nodes.length - 2
-    const targetRelativeIndex = randomInt({ max: nonNextCount })
-    const targetIndex = (sourceIndex + targetRelativeIndex) % nodes.length
-    const target = nodes[targetIndex].id
-    links.push(createLink({ source, target }))
-  }
+function createLinkToRandomNonNext({ node, nodes }) {
+  const source = node.id
+  const sourceIndex = nodes.indexOf(node)
+  const nonNextCount = nodes.length - 2
+  const targetRelativeIndex = randomInt({ max: nonNextCount })
+  const targetIndex = (sourceIndex + 2 + targetRelativeIndex) % nodes.length
+  const target = nodes[targetIndex].id
+  return createLink({ source, target })
 }
 
 function createRandomGraph({ count }) {

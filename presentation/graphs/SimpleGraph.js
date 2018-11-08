@@ -5,6 +5,8 @@ const {
   createNode,
   createNodes,
   createLink,
+  createLinkToNext,
+  createLinkToRandomNonNext,
 } = require('./util')
 
 class SimpleGraph extends React.Component {
@@ -26,25 +28,21 @@ class SimpleGraph extends React.Component {
 
   addNode () {
     const graph = this.graphStore.getState()
-    graph.nodes.push(createNode())
-    this.graphStore.putState(graph)
-  }
+    const node = createNode()
+    graph.nodes.push(node)
 
-  addLink () {
-    const graph = this.graphStore.getState()
-    const nodeCount = graph.nodes.length
-    const linkCount = graph.links.length
-    const source = String(nodeCount-1)
-    const target = String(linkCount % nodeCount)
-    graph.links.push(createLink({ source, target }))
+    const { nodes, links } = graph
+    links.push(createLinkToRandomNonNext({ node, nodes }))
+    links.push(createLinkToRandomNonNext({ node, nodes }))
+
+
     this.graphStore.putState(graph)
   }
 
   render () {
     return (
       <div>
-        <button onClick={() => this.addNode()}>add node</button>
-        <button onClick={() => this.addLink()}>add link</button>
+        <button onClick={() => this.addNode()}>new peer</button>
         <ForceGraph graphStore={this.graphStore}/>
       </div>
     )

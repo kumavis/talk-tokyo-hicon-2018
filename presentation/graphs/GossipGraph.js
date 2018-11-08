@@ -16,10 +16,19 @@ class GossipGraph extends React.Component {
     this.graphStore = graphStore
   }
 
+  resetColors () {
+    const graph = this.graphStore.getState()
+    graph.nodes.forEach(node => {
+      node.color = 'green'
+    })
+    this.graphStore.putState(graph)
+  }
+
   async doGossip () {
+    this.resetColors()
     const graph = this.graphStore.getState()
     const node = graph.nodes[0]
-    const color = 'purple'
+    const color = 'orange'
     this.gossipFromNode({ graph, node, color })
   }
 
@@ -50,16 +59,10 @@ class GossipGraph extends React.Component {
     }
   }
 
-  newGraph () {
-    const graph = createConnectedGraph({ count: 100 })
-    this.graphStore.putState(graph)
-  }
-
   render () {
     return (
       <div>
         <button onClick={() => this.doGossip()}>gossip</button>
-        <button onClick={() => this.newGraph()}>restart</button>
         <ForceGraph graphStore={this.graphStore}/>
       </div>
     )
