@@ -14,7 +14,8 @@ import {
   Text
 } from "spectacle";
 
-const ForceGraph = require('./graph')
+const SimpleGraph = require('./graphs/SimpleGraph')
+const GossipGraph = require('./graphs/GossipGraph')
 
 // Import theme
 import createTheme from "spectacle/lib/themes/default";
@@ -118,12 +119,12 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide transition={["zoom"]} bgColor="white">
-          <Heading size={1} fit lineHeight={1} textColor="secondary">
-            pretty pretty
-          </Heading>
-          <ForceGraph></ForceGraph>
+          <SimpleGraph/>
         </Slide>
 
+        <Slide transition={["zoom"]} bgColor="white">
+          <GossipGraph/>
+        </Slide>
 
       </Deck>
     );
