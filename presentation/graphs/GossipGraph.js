@@ -4,12 +4,13 @@ const ForceGraph = require('./ForceGraph')
 const {
   createRandomGraph,
 } = require('./util')
+const timeout = (duration) => new Promise(resolve => setTimeout(resolve, duration))
 
 class GossipGraph extends React.Component {
   constructor () {
     super()
 
-    const graph = createRandomGraph({ count: 10 })
+    const graph = createRandomGraph({ count: 100 })
 
     const graphStore = new ObservableStore(graph)
     this.graphStore = graphStore
@@ -23,16 +24,17 @@ class GossipGraph extends React.Component {
   }
 
   async gossipFromNode({ graph, node, color }) {
+    const latency = 50
     node.color = color
     this.graphStore.putState(graph)
-    await new Promise(resolve => setTimeout(resolve, 200))
+    await timeout(latency)
     const nodeLinks = graph.links.filter(linksMatchingCurrentNode)
     const nodePairs = nodeLinks.map(getPair)
     const newPairs = nodePairs.filter(pairNode => pairNode.color !== color)
     for (let pairNode of newPairs) {
       pairNode.color = color
       this.graphStore.putState(graph)
-      await new Promise(resolve => setTimeout(resolve, 200))
+      await timeout(latency)
       this.gossipFromNode({ graph, node: pairNode, color })
     }
 
@@ -49,7 +51,7 @@ class GossipGraph extends React.Component {
   }
 
   newGraph () {
-    const graph = createRandomGraph({ count: 10 })
+    const graph = createRandomGraph({ count: 100 })
     this.graphStore.putState(graph)
   }
 
