@@ -11,11 +11,21 @@ import {
   List,
   Quote,
   Slide,
-  Text
+  Text,
+  Image,
+  Table, TableHeader, TableHeaderItem, TableBody, TableRow, TableItem,
 } from "spectacle";
 
 const SimpleGraph = require('./graphs/SimpleGraph')
 const GossipGraph = require('./graphs/GossipGraph')
+
+
+const images = {
+  blockchain: require('../assets/ethblockchain_full.png'),
+  merkle: require('../assets/merkle-simple.png'),
+}
+
+// preloader(images);
 
 // Import theme
 import createTheme from "spectacle/lib/themes/default";
@@ -72,10 +82,10 @@ export default class Presentation extends React.Component {
 
         <Slide bgColor="primary">
           <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Problem statement
+            Problem
           </Heading>
           <List>
-            <ListItem>metamask uses centralized infrastructure</ListItem>
+            <ListItem>centralized infrastructure</ListItem>
             <ListItem>its expensive and requires trust</ListItem>
           </List>
         </Slide>
@@ -91,11 +101,62 @@ export default class Presentation extends React.Component {
 
         <Slide bgColor="primary">
           <Heading size={1} fit lineHeight={1} textColor="secondary">
-            Light vs Full
+            Solution
           </Heading>
           <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
-            diagram here
+            metamask light client!
           </Text>
+        </Slide>
+
+        <Slide bgColor="primary">
+          <Heading size={3} lineHeight={1} textColor="secondary">
+            Light vs Full
+          </Heading>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHeaderItem></TableHeaderItem>
+                <TableHeaderItem>Full</TableHeaderItem>
+                <TableHeaderItem>Light</TableHeaderItem>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                <TableItem>syncs blocks</TableItem>
+                <TableItem>o</TableItem>
+                <TableItem>o</TableItem>
+              </TableRow>
+              <TableRow>
+                <TableItem>has recent state</TableItem>
+                <TableItem>o</TableItem>
+                <TableItem>x</TableItem>
+              </TableRow>
+              <TableRow>
+                <TableItem>validates state transition</TableItem>
+                <TableItem>o</TableItem>
+                <TableItem>x</TableItem>
+              </TableRow>
+              <TableRow>
+                <TableItem>can validate state value</TableItem>
+                <TableItem>o</TableItem>
+                <TableItem>o</TableItem>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </Slide>
+
+        <Slide bgColor="primary">
+          <Heading size={3} lineHeight={1} textColor="secondary">
+            merkle tree
+          </Heading>
+          <Image src={images.merkle.replace('/', '')} margin="0px auto 40px" />
+        </Slide>
+
+        <Slide bgColor="primary">
+          <Heading size={3} lineHeight={1} textColor="secondary">
+            eth blockchain
+          </Heading>
+          <Image src={images.blockchain.replace('/', '')} margin="0px auto 40px" />
         </Slide>
 
         <Slide bgColor="primary">
@@ -107,15 +168,6 @@ export default class Presentation extends React.Component {
             <ListItem>network for browser transports (!)</ListItem>
             <ListItem>light clients are leechers</ListItem>
           </List>
-        </Slide>
-
-        <Slide bgColor="primary">
-          <Heading size={1} fit lineHeight={1} textColor="secondary">
-            Light vs Full
-          </Heading>
-          <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
-            diagram here
-          </Text>
         </Slide>
 
         <Slide bgColor="white">
