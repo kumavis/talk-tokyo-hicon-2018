@@ -63,11 +63,11 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide bgColor="primary">
-          <Heading size={1} fit lineHeight={1} textColor="secondary">
+          <Heading size={1} fit lineHeight={1} textColor="tertiary">
             MetaMask
           </Heading>
-          <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
-            what we do
+          <Text margin="10px 0 0" textColor="secondary" fit size={2} bold>
+            by ConsenSys
           </Text>
         </Slide>
 
