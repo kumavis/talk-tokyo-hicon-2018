@@ -10,17 +10,21 @@ class MultiGossipGraph extends React.Component {
   constructor () {
     super()
 
-    const graph = createConnectedGraph({ count: 100 })
-
-    const graphStore = new ObservableStore(graph)
+    const graphStore = new ObservableStore()
     this.graphStore = graphStore
+
+    this.newGraph()
   }
 
   async doGossip () {
     const graph = this.graphStore.getState()
-    const node = graph.nodes[0]
-    const color = 'purple'
-    this.gossipFromNode({ graph, node, color })
+    const node1 = this.graph1.nodes[0]
+    const node2 = this.graph2.nodes[0]
+    const node3 = this.graph3.nodes[0]
+
+    this.gossipFromNode({ graph, node: node1, color: 'red' })
+    this.gossipFromNode({ graph, node: node2, color: 'blue' })
+    this.gossipFromNode({ graph, node: node3, color: 'purple' })
   }
 
   async gossipFromNode({ graph, node, color }) {
@@ -51,14 +55,17 @@ class MultiGossipGraph extends React.Component {
   }
 
   newGraph () {
-    const graph1 = createConnectedGraph({ count: 6 })
-    const graph2 = createConnectedGraph({ count: 12 })
-    const graph3 = createConnectedGraph({ count: 4 })
+    const graph1 = createConnectedGraph({ count: 16 })
+    const graph2 = createConnectedGraph({ count: 34 })
+    const graph3 = createConnectedGraph({ count: 8 })
     const graph = {
       nodes: [].concat(graph1.nodes, graph2.nodes, graph3.nodes),
       links: [].concat(graph1.links, graph2.links, graph3.links),
     }
     this.graphStore.putState(graph)
+    this.graph1 = graph1
+    this.graph2 = graph2
+    this.graph3 = graph3
   }
 
   render () {

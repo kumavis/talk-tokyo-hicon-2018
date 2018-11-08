@@ -26,8 +26,7 @@ class SimpleGraph extends React.Component {
 
   addNode () {
     const graph = this.graphStore.getState()
-    const id = String(graph.nodes.length)
-    graph.nodes.push(createNode({ id }))
+    graph.nodes.push(createNode())
     this.graphStore.putState(graph)
   }
 

@@ -7,10 +7,14 @@ module.exports = {
   createConnectedGraph,
 }
 
+let lastNodeId = 0
+
 function createNode(params) {
   const node = Object.assign({
+    id: String(lastNodeId),
     color: 'green',
   }, params)
+  lastNodeId++
   return node
 }
 
@@ -26,7 +30,7 @@ function createLink({ source, target }) {
 }
 
 function createNodes({ count }) {
-  return Array(count).fill().map((_, index) => createNode({ id: String(index) }))
+  return Array(count).fill().map(createNode)
 }
 
 function createRandomLinks({ nodes }) {

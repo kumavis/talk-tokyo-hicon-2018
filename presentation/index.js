@@ -18,7 +18,7 @@ import {
 
 const SimpleGraph = require('./graphs/SimpleGraph')
 const GossipGraph = require('./graphs/GossipGraph')
-
+const MultiGossipGraph = require('./graphs/MultiGossipGraph')
 
 const images = {
   blockchain: require('../assets/ethblockchain_full.png'),
@@ -171,11 +171,24 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide bgColor="white">
+          <Heading size={3} lineHeight={1} textColor="secondary">
+            p2p network
+          </Heading>
           <SimpleGraph/>
         </Slide>
 
         <Slide bgColor="white">
+          <Heading size={3} lineHeight={1} textColor="secondary">
+            gossipping blocks
+          </Heading>
           <GossipGraph/>
+        </Slide>
+
+        <Slide bgColor="white">
+          <Heading size={3} lineHeight={1} textColor="secondary">
+            gossipping slices
+          </Heading>
+          <MultiGossipGraph/>
         </Slide>
 
       </Deck>
