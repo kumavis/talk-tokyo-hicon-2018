@@ -2,7 +2,7 @@ const React = require('react')
 const ObservableStore = require('obs-store')
 const ForceGraph = require('./ForceGraph')
 const {
-  createRandomGraph,
+  createConnectedGraph,
 } = require('./util')
 const timeout = (duration) => new Promise(resolve => setTimeout(resolve, duration))
 
@@ -10,7 +10,7 @@ class GossipGraph extends React.Component {
   constructor () {
     super()
 
-    const graph = createRandomGraph({ count: 100 })
+    const graph = createConnectedGraph({ count: 100 })
 
     const graphStore = new ObservableStore(graph)
     this.graphStore = graphStore
@@ -51,7 +51,7 @@ class GossipGraph extends React.Component {
   }
 
   newGraph () {
-    const graph = createRandomGraph({ count: 100 })
+    const graph = createConnectedGraph({ count: 100 })
     this.graphStore.putState(graph)
   }
 
@@ -69,5 +69,5 @@ class GossipGraph extends React.Component {
 module.exports = GossipGraph
 
 function randomColor () {
-  return '#'+Math.floor(Math.random()*16777215).toString(16)
+  return '#'+Math.floor(Math.random()*16777216).toString(16)
 }

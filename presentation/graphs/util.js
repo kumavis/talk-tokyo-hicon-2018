@@ -2,8 +2,9 @@ module.exports = {
   createNode,
   createLink,
   createNodes,
-  createLinks,
+  createRandomLinks,
   createRandomGraph,
+  createConnectedGraph,
 }
 
 function createNode(params) {
@@ -28,7 +29,7 @@ function createNodes({ count }) {
   return Array(count).fill().map((_, index) => createNode({ id: String(index) }))
 }
 
-function createLinks({ nodes }) {
+function createRandomLinks({ nodes }) {
   const links = []
   nodes.forEach((node, index) => {
     const source = node.id
@@ -40,12 +41,45 @@ function createLinks({ nodes }) {
   return links
 }
 
+function createConnectedLinks({ nodes }) {
+  const links = []
+  nodes.forEach((node) => {
+    connectNext({ node })
+    connectRandomNonNext({ node })
+  })
+  return links
+
+  function connectNext({ node }) {
+    const source = node.id
+    const sourceIndex = nodes.indexOf(node)
+    const targetIndex = (sourceIndex + 1) % nodes.length
+    const target = nodes[targetIndex].id
+    links.push(createLink({ source, target }))
+  }
+
+  function connectRandomNonNext({ node }) {
+    const source = node.id
+    const sourceIndex = nodes.indexOf(node)
+    const nonNextCount = nodes.length - 2
+    const targetRelativeIndex = randomInt({ max: nonNextCount })
+    const targetIndex = (sourceIndex + targetRelativeIndex) % nodes.length
+    const target = nodes[targetIndex].id
+    links.push(createLink({ source, target }))
+  }
+}
+
 function createRandomGraph({ count }) {
   const nodes = createNodes({ count })
-  const links = createLinks({ nodes })
+  const links = createRandomLinks({ nodes })
   return { nodes, links }
 }
 
-function randomInt({ min, max }) {
+function createConnectedGraph({ count }) {
+  const nodes = createNodes({ count })
+  const links = createConnectedLinks({ nodes })
+  return { nodes, links }
+}
+
+function randomInt({ min = 0, max }) {
   return min + Math.floor((max - min)*Math.random() )
 }
