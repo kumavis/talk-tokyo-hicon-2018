@@ -81,22 +81,13 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
+          <Heading size={1} fit lineHeight={1} textColor="secondary">
             Problem
           </Heading>
           <List>
             <ListItem>centralized infrastructure</ListItem>
             <ListItem>its expensive and requires trust</ListItem>
           </List>
-        </Slide>
-
-        <Slide bgColor="primary">
-          <Heading size={1} fit lineHeight={1} textColor="secondary">
-            Solution
-          </Heading>
-          <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
-            metamask light client!
-          </Text>
         </Slide>
 
         <Slide bgColor="primary">
@@ -159,17 +150,6 @@ export default class Presentation extends React.Component {
           <Image src={images.blockchain.replace('/', '')} margin="0px auto 40px" />
         </Slide>
 
-        <Slide bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            technical problems
-          </Heading>
-          <List>
-            <ListItem>browser light client implementation</ListItem>
-            <ListItem>network for browser transports (!)</ListItem>
-            <ListItem>light clients are leechers</ListItem>
-          </List>
-        </Slide>
-
         <Slide bgColor="white">
           <Heading size={3} lineHeight={1} textColor="secondary">
             p2p network
@@ -195,3 +175,14 @@ export default class Presentation extends React.Component {
     );
   }
 }
+//
+// <Slide bgColor="primary">
+//   <Heading size={1} fit lineHeight={1} textColor="secondary">
+//     technical problems
+//   </Heading>
+//   <List>
+//     <ListItem>browser light client implementation</ListItem>
+//     <ListItem>network for browser transports (!)</ListItem>
+//     <ListItem>light clients are leechers</ListItem>
+//   </List>
+// </Slide>
