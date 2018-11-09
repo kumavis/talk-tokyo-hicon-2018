@@ -23,6 +23,8 @@ const MultiGossipGraph = require('./graphs/MultiGossipGraph')
 const images = {
   blockchain: require('../assets/ethblockchain_full.png'),
   merkle: require('../assets/merkle-simple.png'),
+  mustekalaAdmin: require('../assets/mustekala-admin.png'),
+  // mustekalaAdminVideo: require('../assets/visualizer.mov')
 }
 
 // preloader(images);
@@ -169,6 +171,21 @@ export default class Presentation extends React.Component {
             gossipping slices
           </Heading>
           <MultiGossipGraph/>
+        </Slide>
+
+        <Slide bgColor="primary">
+          <Heading size={3} lineHeight={1} textColor="secondary">
+            kitsunet dashboard
+          </Heading>
+          <Image src={images.mustekalaAdmin.replace('/', '')} margin="0px auto 40px" />
+        </Slide>
+
+        <Slide bgColor="primary">
+          <Heading size={3} lineHeight={1} textColor="secondary">
+            kitsunet dashboard
+          </Heading>
+          <video src='https://raw.githubusercontent.com/kumavis/talk-dweb-2018/master/videos/visualizer.mov' width="320" height="240" controls preload="auto"></video>
+
         </Slide>
 
       </Deck>
