@@ -21,10 +21,13 @@ const GossipGraph = require('./graphs/GossipGraph')
 const MultiGossipGraph = require('./graphs/MultiGossipGraph')
 
 const images = {
-  blockchain: require('../assets/ethblockchain_full.png'),
-  merkle: require('../assets/merkle-simple.png'),
   mustekalaAdmin: require('../assets/mustekala-admin.png'),
   // mustekalaAdminVideo: require('../assets/visualizer.mov')
+  merkle: require('../assets/herman-merkle.png'),
+  merkleBranch: require('../assets/herman-merkle-branch.png'),
+  merkleSlice: require('../assets/herman-slice.jpg'),
+  blockchain: require('../assets/herman-blockchain.png'),
+  lightClients: require('../assets/light-clients.png'),
 }
 
 // preloader(images);
@@ -103,7 +106,7 @@ export default class Presentation extends React.Component {
 
         <Slide bgColor="primary">
           <Heading size={3} lineHeight={1} textColor="secondary">
-            Light vs Full
+            Full vs Light
           </Heading>
           <Table>
             <TableHeader>
@@ -129,7 +132,7 @@ export default class Presentation extends React.Component {
                 <TableItem>o</TableItem>
                 <TableItem>x</TableItem>
               </TableRow>
-              <TableRow>
+              <TableRow textColor="tertiary">
                 <TableItem>can validate state value</TableItem>
                 <TableItem>o</TableItem>
                 <TableItem>o</TableItem>
@@ -147,9 +150,66 @@ export default class Presentation extends React.Component {
 
         <Slide bgColor="primary">
           <Heading size={3} lineHeight={1} textColor="secondary">
+            merkle tree branch
+          </Heading>
+          <Image src={images.merkleBranch.replace('/', '')} margin="0px auto 40px" />
+        </Slide>
+
+        <Slide bgColor="primary">
+          <Heading size={3} lineHeight={1} textColor="secondary">
             eth blockchain
           </Heading>
           <Image src={images.blockchain.replace('/', '')} margin="0px auto 40px" />
+        </Slide>
+
+        <Slide bgColor="primary">
+          <Heading size={1} fit lineHeight={1} textColor="secondary">
+            Light clients
+          </Heading>
+          <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
+            can validate state
+          </Text>
+        </Slide>
+
+        <Slide bgColor="primary">
+          <Heading size={1} fit lineHeight={1} textColor="secondary">
+            light clients get state from full nodes
+          </Heading>
+          <Image src={images.lightClients.replace('/', '')} margin="0px auto 40px" />
+        </Slide>
+
+        <Slide bgColor="primary">
+          <Heading size={1} fit lineHeight={1} textColor="secondary">
+            Problem
+          </Heading>
+          <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
+            too many light clients
+          </Text>
+        </Slide>
+
+        <Slide bgColor="primary">
+          <Heading size={1} fit lineHeight={1} textColor="secondary">
+            Solution
+          </Heading>
+          <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
+            light clients share data too
+          </Text>
+        </Slide>
+
+        <Slide bgColor="primary">
+          <Heading size={1} fit lineHeight={1} textColor="secondary">
+            Problem
+          </Heading>
+          <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
+            >200 million tree nodes
+          </Text>
+        </Slide>
+
+        <Slide bgColor="primary">
+          <Heading size={3} lineHeight={1} fit textColor="secondary">
+            65k merkle tree slices (128kb)
+          </Heading>
+          <Image src={images.merkleSlice.replace('/', '')} margin="0px auto 40px" />
         </Slide>
 
         <Slide bgColor="white">
@@ -185,7 +245,15 @@ export default class Presentation extends React.Component {
             kitsunet dashboard
           </Heading>
           <video src='https://raw.githubusercontent.com/kumavis/talk-dweb-2018/master/videos/visualizer.mov' width="320" height="240" controls preload="auto"></video>
+        </Slide>
 
+        <Slide bgColor="primary">
+          <Heading size={1} fit lineHeight={1} textColor="secondary">
+            thanks
+          </Heading>
+          <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
+            coming soon
+          </Text>
         </Slide>
 
       </Deck>
