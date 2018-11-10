@@ -21,7 +21,10 @@ const GossipGraph = require('./graphs/GossipGraph')
 const MultiGossipGraph = require('./graphs/MultiGossipGraph')
 
 const images = {
+  centralized: require('../assets/centralized.png'),
+  mustekala: require('../assets/mustekala.svg'),
   mustekalaAdmin: require('../assets/mustekala-admin.png'),
+  kitsunet: require('../assets/kitsunet.png'),
   // mustekalaAdminVideo: require('../assets/visualizer.mov')
   merkle: require('../assets/herman-merkle.png'),
   merkleBranch: require('../assets/herman-merkle-branch.png'),
@@ -63,7 +66,7 @@ export default class Presentation extends React.Component {
             kumavis
           </Heading>
           <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
-            it me
+            herman
           </Text>
         </Slide>
 
@@ -77,6 +80,13 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide bgColor="primary">
+          <Heading size={3} lineHeight={1} textColor="secondary">
+            Mustekala
+          </Heading>
+          <Image src={images.mustekala.replace('/', '')} margin="0px auto 40px" />
+        </Slide>
+
+        <Slide bgColor="primary">
           <Heading size={1} fit lineHeight={1} textColor="secondary">
             this talk
           </Heading>
@@ -87,21 +97,16 @@ export default class Presentation extends React.Component {
 
         <Slide bgColor="primary">
           <Heading size={1} fit lineHeight={1} textColor="secondary">
-            Problem
+            Problem: centralized infrastructure
           </Heading>
-          <List>
-            <ListItem>centralized infrastructure</ListItem>
-            <ListItem>its expensive and requires trust</ListItem>
-          </List>
+          <Image src={images.centralized.replace('/', '')} margin="0px auto 40px" />
         </Slide>
 
         <Slide bgColor="primary">
-          <Heading size={1} fit lineHeight={1} textColor="secondary">
-            Solution
-          </Heading>
           <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
             metamask light client!
           </Text>
+          <Image src={images.kitsunet.replace('/', '')} margin="0px auto 40px" />
         </Slide>
 
         <Slide bgColor="primary">
