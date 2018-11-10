@@ -25,12 +25,14 @@ const images = {
   mustekala: require('../assets/mustekala.svg'),
   mustekalaAdmin: require('../assets/mustekala-admin.png'),
   kitsunet: require('../assets/kitsunet.png'),
-  // mustekalaAdminVideo: require('../assets/visualizer.mov')
   merkle: require('../assets/herman-merkle.png'),
   merkleBranch: require('../assets/herman-merkle-branch.png'),
   merkleSlice: require('../assets/herman-slice.jpg'),
   blockchain: require('../assets/herman-blockchain.png'),
   lightClients: require('../assets/light-clients.png'),
+  contractStorageStats: require('../assets/contract-storage-stats.jpg'),
+  stateTrieStats: require('../assets/state-trie-stats.jpg'),
+  contractSize: require('../assets/contract-size.png'),
 }
 
 // preloader(images);
@@ -199,6 +201,27 @@ export default class Presentation extends React.Component {
           <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
             light clients share data too
           </Text>
+        </Slide>
+
+        <Slide bgColor="primary">
+          <Heading size={1} fit lineHeight={1} textColor="secondary">
+            Problem
+          </Heading>
+          <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
+            >200 million tree nodes
+          </Text>
+        </Slide>
+
+        <Slide bgColor="white">
+          <Image src={images.stateTrieStats.replace('/', '')} margin="0px auto 40px" />
+        </Slide>
+
+        <Slide bgColor="white">
+          <Image src={images.contractStorageStats.replace('/', '')} margin="0px auto 40px" />
+        </Slide>
+
+        <Slide bgColor="white">
+          <Image src={images.contractSize.replace('/', '')} margin="0px auto 40px" />
         </Slide>
 
         <Slide bgColor="primary">
